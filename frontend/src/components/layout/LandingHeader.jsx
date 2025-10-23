@@ -8,7 +8,14 @@ const LandingHeader = () => {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-6">
+        <div
+          className="flex justify-between items-center py-5"
+          style={{
+            height: "138.48px",
+            paddingTop: "20px",
+            paddingBottom: "20px",
+          }}
+        >
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <div className="flex items-center">
@@ -40,7 +47,12 @@ const LandingHeader = () => {
                     </defs>
                   </svg>
                 </div>
-                <span className="text-2xl font-bold text-gray-800">Mixer</span>
+                <span
+                  className="font-bold"
+                  style={{ fontSize: "16px", color: "#000000B3" }}
+                >
+                  Mixer
+                </span>
               </div>
             </Link>
           </div>
@@ -49,7 +61,8 @@ const LandingHeader = () => {
           <nav className="hidden md:flex space-x-8">
             <Link
               to="/"
-              className="text-gray-700 hover:text-teal-600 transition-colors font-medium"
+              className="hover:text-teal-600 transition-colors font-medium"
+              style={{ fontSize: "16px", color: "#000000B3" }}
             >
               Home
             </Link>
@@ -58,8 +71,9 @@ const LandingHeader = () => {
               className={`transition-colors font-medium ${
                 location.pathname === "/events"
                   ? "text-teal-600 underline"
-                  : "text-gray-700 hover:text-teal-600"
+                  : "hover:text-teal-600"
               }`}
+              style={{ fontSize: "16px", color: "#000000B3" }}
             >
               Upcoming Events
             </Link>
@@ -68,14 +82,16 @@ const LandingHeader = () => {
               className={`transition-colors font-medium ${
                 location.pathname === "/blind-mixers"
                   ? "text-teal-600 underline"
-                  : "text-gray-700 hover:text-teal-600"
+                  : "hover:text-teal-600"
               }`}
+              style={{ fontSize: "16px", color: "#000000B3" }}
             >
               Blind Mixers
             </Link>
             <Link
               to="/contact"
-              className="text-gray-700 hover:text-teal-600 transition-colors font-medium"
+              className="hover:text-teal-600 transition-colors font-medium"
+              style={{ fontSize: "16px", color: "#000000B3" }}
             >
               Contact
             </Link>

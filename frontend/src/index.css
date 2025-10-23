@@ -11,6 +11,12 @@
   
   body {
     @apply bg-white text-gray-900;
+    cursor: none; /* Hide default cursor */
+  }
+  
+  /* Custom orange circle cursor */
+  * {
+    cursor: none;
   }
 }
 
@@ -54,5 +60,25 @@
   
   .step-number {
     @apply w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-sm;
+  }
+  
+  /* Custom Orange Circle Cursor */
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #f97316; /* Orange-500 color */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+    transform: translate(-50%, -50%);
+  }
+  
+  .custom-cursor.hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    border-color: #ea580c; /* Orange-600 for hover state */
   }
 }

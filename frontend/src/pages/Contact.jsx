@@ -267,9 +267,9 @@ const Contact = () => {
                     </label>
                     <p className="text-xs text-gray-500 mt-1">
                       reCAPTCHA is changing its terms of service.{" "}
-                      <a href="#" className="text-blue-600 hover:underline">
+                      <button className="text-blue-600 hover:underline bg-transparent border-none p-0 cursor-pointer">
                         Take action.
-                      </a>
+                      </button>
                     </p>
                   </div>
                   <div className="text-xs text-gray-500">
@@ -280,13 +280,13 @@ const Contact = () => {
                       <span>reCAPTCHA</span>
                     </div>
                     <div className="text-xs">
-                      <a href="#" className="text-blue-600 hover:underline">
+                      <button className="text-blue-600 hover:underline bg-transparent border-none p-0 cursor-pointer">
                         Privacy
-                      </a>{" "}
+                      </button>{" "}
                       -{" "}
-                      <a href="#" className="text-blue-600 hover:underline">
+                      <button className="text-blue-600 hover:underline bg-transparent border-none p-0 cursor-pointer">
                         Terms
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
