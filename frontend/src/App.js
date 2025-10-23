@@ -8,7 +8,12 @@ import CustomCursor from "./components/ui/CustomCursor";
 
 function App() {
   return (
-    <Router>
+    <Router
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <CustomCursor />
       <Routes>
         <Route path="/" element={<Landing />} />
