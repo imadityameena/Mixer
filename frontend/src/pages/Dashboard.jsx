@@ -1,158 +1,79 @@
-import React, { useState, useEffect } from "react";
-import Card from "../components/ui/Card";
-import Button from "../components/ui/Button";
-import LoadingSpinner from "../components/ui/LoadingSpinner";
+import React from "react";
+import { Link } from "react-router-dom";
+import authService from "../services/authService";
 
 const Dashboard = () => {
-  const [stats, setStats] = useState({
-    totalMatches: 0,
-    newMatches: 0,
-    profileViews: 0,
-  });
-  const [loading, setLoading] = useState(true);
+  const user = authService.getCurrentUser();
 
-  useEffect(() => {
-    // Simulate loading user stats
-    const timer = setTimeout(() => {
-      setStats({
-        totalMatches: 12,
-        newMatches: 3,
-        profileViews: 47,
-      });
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-96">
-        <LoadingSpinner size="lg" />
-      </div>
-    );
-  }
+  const handleSignOut = () => {
+    authService.signOut();
+    window.location.href = "/";
+  };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Welcome Section */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Welcome to Mixer! 👋
-        </h1>
-        <p className="text-gray-600">
-          Ready to find your perfect match? Let's see what's new today.
-        </p>
-      </div>
+    <div className="min-h-screen" style={{ backgroundColor: "#F5F0E6" }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="bg-white rounded-2xl shadow-xl p-8">
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+              Welcome to Mixer, {user?.name || user?.given_name || "User"}!
+            </h1>
+            <p className="text-gray-600 mb-8">
+              You're now part of our safe, verified community.
+            </p>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <Card className="text-center">
-          <div className="text-3xl font-bold text-primary-600 mb-2">
-            {stats.totalMatches}
-          </div>
-          <div className="text-sm text-gray-600">Total Matches</div>
-        </Card>
-
-        <Card className="text-center">
-          <div className="text-3xl font-bold text-accent-600 mb-2">
-            {stats.newMatches}
-          </div>
-          <div className="text-sm text-gray-600">New Matches</div>
-        </Card>
-
-        <Card className="text-center">
-          <div className="text-3xl font-bold text-secondary-600 mb-2">
-            {stats.profileViews}
-          </div>
-          <div className="text-sm text-gray-600">Profile Views</div>
-        </Card>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <Card>
-          <Card.Header>
-            <Card.Title>Your Profile</Card.Title>
-            <Card.Description>
-              Keep your profile fresh and attractive
-            </Card.Description>
-          </Card.Header>
-          <Card.Content>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">
-                  Profile Completion
-                </span>
-                <span className="text-sm font-medium text-primary-600">
-                  85%
-                </span>
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-teal-50 border border-teal-200 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-teal-800 mb-2">
+                  Complete Your Profile
+                </h3>
+                <p className="text-teal-600 text-sm">
+                  Add photos and details to help others get to know you.
+                </p>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div
-                  className="bg-primary-600 h-2 rounded-full"
-                  style={{ width: "85%" }}
-                ></div>
+
+              <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-red-800 mb-2">
+                  Background Check
+                </h3>
+                <p className="text-red-600 text-sm">
+                  Complete your background verification for full access.
+                </p>
+              </div>
+
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                  Upcoming Events
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Check out our next mixer events in Colorado Springs.
+                </p>
               </div>
             </div>
-          </Card.Content>
-          <Card.Footer>
-            <Button className="w-full">Update Profile</Button>
-          </Card.Footer>
-        </Card>
 
-        <Card>
-          <Card.Header>
-            <Card.Title>Discover Matches</Card.Title>
-            <Card.Description>Find your perfect match today</Card.Description>
-          </Card.Header>
-          <Card.Content>
-            <div className="text-center py-4">
-              <div className="text-4xl mb-2">💕</div>
-              <p className="text-gray-600">
-                {stats.newMatches > 0
-                  ? `You have ${stats.newMatches} new matches waiting!`
-                  : "No new matches yet, but keep swiping!"}
-              </p>
-            </div>
-          </Card.Content>
-          <Card.Footer>
-            <Button className="w-full">Start Swiping</Button>
-          </Card.Footer>
-        </Card>
-      </div>
-
-      {/* Recent Activity */}
-      <Card className="mt-8">
-        <Card.Header>
-          <Card.Title>Recent Activity</Card.Title>
-          <Card.Description>
-            Your latest interactions and updates
-          </Card.Description>
-        </Card.Header>
-        <Card.Content>
-          <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-2 h-2 bg-accent-500 rounded-full"></div>
-              <span className="text-sm text-gray-600">
-                You matched with Sarah 2 hours ago
-              </span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
-              <span className="text-sm text-gray-600">
-                Your profile was viewed 5 times today
-              </span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-2 h-2 bg-secondary-500 rounded-full"></div>
-              <span className="text-sm text-gray-600">
-                You updated your interests yesterday
-              </span>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/profile"
+                className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+              >
+                Complete Profile
+              </Link>
+              <Link
+                to="/events"
+                className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+              >
+                View Events
+              </Link>
+              <button
+                onClick={handleSignOut}
+                className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+              >
+                Sign Out
+              </button>
             </div>
           </div>
-        </Card.Content>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 };

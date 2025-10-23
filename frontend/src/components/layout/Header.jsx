@@ -34,9 +34,20 @@ const Header = () => {
             </Link>
           </nav>
 
-          {/* User Actions */}
+          {/* Auth Buttons */}
           <div className="flex items-center space-x-4">
-            <span className="text-sm text-gray-700">Welcome to Mixer</span>
+            <Link
+              to="/login"
+              className="text-gray-700 hover:text-primary-600 transition-colors font-medium px-4 py-2 rounded-lg hover:bg-primary-50"
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+            >
+              Sign Up
+            </Link>
           </div>
         </div>
       </div>
